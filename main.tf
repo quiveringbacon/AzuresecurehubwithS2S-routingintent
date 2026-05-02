@@ -525,6 +525,7 @@ resource "azurerm_public_ip" "onpremvpngw-pip" {
   resource_group_name = azurerm_resource_group.RG.name
   allocation_method = "Static"
   sku = "Standard"
+  zones = ["1", "2", "3"]
   timeouts {
     create = "2h"
     read = "2h"
@@ -553,7 +554,7 @@ resource "azurerm_virtual_network_gateway" "onpremvpngw" {
   location            = azurerm_resource_group.RG.location
   resource_group_name = azurerm_resource_group.RG.name
   type     = "Vpn"
-  sku           = "VpnGw1"
+  sku           = "VpnGw1AZ"
   enable_bgp    = true
   bgp_settings {
     asn = "65002"
